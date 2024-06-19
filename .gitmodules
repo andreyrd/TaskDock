@@ -1,0 +1,3 @@
+[submodule "TaskDock/CGSInternal"]
+	path = TaskDock/CGSInternal
+	url = git@github.com:NUIKit/CGSInternal.git
