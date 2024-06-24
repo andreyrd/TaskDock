@@ -134,7 +134,7 @@ class StateHandler {
         return Window(
             id: windowId, name: name, title: title, icon: icon,
             bounds: bounds,
-            displayId: displayId, spaceId: space,
+            displayId: displayId, displayUUID: _displayUuids[displayId], spaceId: space,
             pid: ownerPid, bundleId: bundleId, path: path
         )
     }

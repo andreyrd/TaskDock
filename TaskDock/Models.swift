@@ -66,13 +66,14 @@ class Window: Equatable {
     
     
     init(id: CGWindowID, name: String, title: String? = nil, icon: NSImage? = nil, bounds: CGRect,
-         displayId: CGDirectDisplayID, spaceId: CGSSpaceID, pid: pid_t, bundleId: String, path: String? = nil) {
+         displayId: CGDirectDisplayID, displayUUID: CFString?, spaceId: CGSSpaceID, pid: pid_t, bundleId: String, path: String? = nil) {
         self.id = id
         self.name = name
         self.title = title
         self.icon = icon
         self.bounds = bounds
         self.displayId = displayId
+        self.displayUUID = displayUUID
         self.spaceId = spaceId
         self.pid = pid
         self.bundleId = bundleId
@@ -87,6 +88,7 @@ class Window: Equatable {
     var bounds: CGRect
     
     var displayId: CGDirectDisplayID
+    var displayUUID: CFString?
     var spaceId: CGSSpaceID
     
     var pid: pid_t
