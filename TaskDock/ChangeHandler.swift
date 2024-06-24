@@ -17,6 +17,7 @@ class ChangeHandler: NSObject {
     private static let DEBOUNCE_INTERVAL = 0.1
     private var recreateDebounceTimer: Timer?
     private var recreateRetriggered: Bool = false
+    private var refreshTimer: Timer?
     private var refreshDebounceTimer: Timer?
     private var refreshRetriggered: Bool = false
     
@@ -49,7 +50,7 @@ class ChangeHandler: NSObject {
         // TODO: This constantly crashes, we should just store the display geometry and do a quick check on refresh to see if it changed
         
         // Start an infinite timer too to catch anything else
-        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(triggerRefresh), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.triggerRefresh), userInfo: nil, repeats: true)
     }
     
     @objc func triggerRecreate() {
@@ -70,7 +71,7 @@ class ChangeHandler: NSObject {
         }
     }
     
-    @objc func triggerRefresh(notification: Notification) {
+    @objc func triggerRefresh() {
         if refreshDebounceTimer != nil {
             // This will let the timer know that it should indeed call the closure again when it expires
             refreshRetriggered = true
